@@ -5,7 +5,8 @@ __pycache__/
 
 # --- pytest ---
 .pytest_cache/
-
+# --- UI 失败截图 ---
+report/
 # --- 测试产物（本地生成，不提交）---
 allure-results*/
 allure-report/
