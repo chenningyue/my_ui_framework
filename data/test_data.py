@@ -1,0 +1,5 @@
+URL = "file:///F:/claude/personal-records/自动化学习/demo.html"
+username = "陈宁悦"
+password = "123456"
+expected = "登录成功"
+expected_empty = "用户名和密码不能为空"
