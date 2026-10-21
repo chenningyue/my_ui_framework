@@ -1,0 +1,28 @@
+  name: UI 自动化 CI
+
+  on:
+    push:
+      branches: [main]
+
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: 拉代码
+          uses: actions/checkout@v4
+
+        - name: 装 Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.11'
+
+        - name: 装依赖
+          run: pip install -r requirements.txt
+
+        - name: 装浏览器（Chromium）
+          run: playwright install --with-deps chromium
+
+        - name: 跑 UI 测试（无头）
+          env:
+            HEADLESS: '1'
+          run: pytest -v
