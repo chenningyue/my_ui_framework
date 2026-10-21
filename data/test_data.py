@@ -1,4 +1,6 @@
-URL = "file:///F:/claude/personal-records/自动化学习/demo.html"
+from pathlib import Path
+
+URL = (Path(__file__).parent.parent / "demo.html").as_uri()
 username = "陈宁悦"
 password = "123456"
 expected = "登录成功"

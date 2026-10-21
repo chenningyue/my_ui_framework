@@ -1,10 +1,13 @@
+import os
+
 import pytest
 from playwright.sync_api import sync_playwright
 
 @pytest.fixture(scope="session")
 def browser():
+    headless = os.getenv('headless') == 'True'
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=headless)
         yield browser
         browser.close()
 
@@ -18,6 +21,7 @@ def page(browser):
 def screenshot_on_failure(request,page):
     yield
     if request.node.rep_call.failed:
+        os.makedirs("report",exist_ok=True)
         page.screenshot(path=f"report/{request.node.name}.png",full_page=True)
 
 @pytest.hookimpl(hookwrapper=True)
